@@ -1,0 +1,26 @@
+{% extends 'bases/base.html.twig' %}
+{% form_theme form with [
+    'form/login_form.html.twig',
+    _self
+] %}
+{% block submit_row %}
+ <input type="submit" value="Registreren">
+{% endblock %}
+{% block title %}{{ parent() }} login{% endblock %}
+{% block inhoud %}
+{{form(form)}}
+<!--- 
+<form method="post" action="register.php?action=registreren">
+    <input type="text" name="username" placeholder="Username" id="username"> <br>
+    <input type="password" name="password" placeholder="Wachtwoord" id="password"> <br>
+    <input type="password" name="repeatedPassword" placeholder="Herhaal wachtwoord" id="herhaalPassword"> <br>
+    <input type="submit" value="Registreren">
+</form>
+--->
+{% endblock %}
+{% block bottomLink %}
+{% for error in app.flashes('error') %}
+<p class="error">{{error}}</p>
+{% endfor %}
+<a href="{{path('app_login')}}">Inloggen</a>
+{% endblock %}

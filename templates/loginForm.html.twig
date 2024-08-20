@@ -1,0 +1,24 @@
+{% if buitengesloten %}
+    {% set action = "login.php" %}
+{% else %}
+    {% set action = "inloggenGegevensControl.php?action=inloggen" %}
+{% endif %}
+
+{% extends 'bases/base.html.twig' %}
+{% block title %}{{ parent() }} login{% endblock %}
+{% block inhoud %}
+{% form_theme form 'form/login_form.html.twig' %}
+{{form(form)}}
+<!---<form method="post" action="{#action#}">
+    <input type="text" name="username" placeholder="Username" id="username"> <br>
+    <input type="password" name="password" placeholder="Wachtwoord" id="password"> <br>
+    <input type="submit" value="aanmelden">
+</form>--->
+{% endblock %}
+{% block bottomLink %}
+{% for error in app.flashes('error') %}
+<p class="error">{{error}}</p>
+{% endfor %}
+<a href="{{path('app_register')}}">Registreren</a><br> of
+U kan inlogen met <br>username: <strong>admin</strong> <br>password: <strong>vdab</strong>
+{% endblock %}

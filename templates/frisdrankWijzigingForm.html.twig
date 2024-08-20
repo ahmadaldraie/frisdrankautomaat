@@ -1,0 +1,21 @@
+{% extends 'bases/base.html.twig' %}
+{% block title %}Frisdrank wijzigen{% endblock %}
+{% form_theme form 'form/frisdrank_wijzigen_form.html.twig' %}
+{% block inhoud %}
+<img src="{{asset('img/'~frisdrank.type~'.png')}}" alt="{{frisdrank.type}}" title="{{frisdrank.type}}">
+<h2>{{frisdrank.type}}</h2>
+{{ form(form) }}
+<!---
+<form method="post" action="wijzigFrisdrank.php?action=wijzigen&id={#frisdrank.id#}">
+    <label for="prijs">Prijs</label>
+    <input type="number" step="0.01" name="prijs" value="{#frisdrank.prijs#}" id="prijs"> <br>
+    <label for="aantal">Aantal</label>
+    <input type="number" name="aantal" value="{#frisdrank.aantal#}" id="aantal" max="20"> <br>
+    <input type="submit" value="Wijzigen">
+</form>
+--->
+{% endblock %}
+{% block bottomLink %}
+Terug naar <a href="{{path('app_admin')}}">de dashboard</a>
+{% endblock %}
+            

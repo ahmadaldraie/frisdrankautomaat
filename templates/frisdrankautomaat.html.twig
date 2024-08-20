@@ -1,0 +1,54 @@
+{% extends 'bases/base.html.twig' %}
+
+{% block inhoud %}
+
+<section class="flexRowWrap" id="frisdranken">
+    {% for frisdrank in frisdranken %}
+    <div class="frisdrank">
+        {% if frisdrank.aantal == 0 %}
+        {% set opacity = 30 %}
+        {% else %}
+        {% set opacity = 100 %}    
+        {% endif %}
+        <a href="{{path('app_bestellen', {id: frisdrank.id})}}"><img style="opacity: {{opacity}}%;" src="{{asset('img/' ~ frisdrank.type ~ '.png')}}" alt="{{frisdrank.type}}"></a>
+        <p class="prijs">{{frisdrank.prijs}} &euro;</p>
+    </div>
+    {% endfor %}
+</section>
+<section class="flexRowNoWrap" id="bestellen">
+    <div class="munten">
+        {% for muntje in muntjes %}
+        <button onclick="window.location.href='{{path('app_insteken', {id: muntje.id})}}';">{{muntje.waarde}}&euro;</button>
+        {% endfor %}
+    </div>
+    <div class="flexColumn" id="schermen">
+        <div class="scherm" id="saldo">Uw saldo: {{saldo}}</div>
+        <div class="scherm" id="feedback">
+            {% if feedback == 'welkom'%}
+                {% if saldo == 0 %}
+                <p>Geniet van een drankje naar keuze. Welkom!</p>
+                {% else %}
+                <p>Kies je favoriet drankje en geniet ervan!</p>
+                {% endif %}
+            {% elseif feedback == 'besteld' %}
+            <p>Geniet van uw drankje! <br> 
+                {% if terugGeld > 0 %}
+                U krijgt terug: {{terugGeld}}&euro;
+                {% endif %}
+            </p>
+            {% elseif feedback == 'nietopvoorraad' %}
+            <p class="error">Dit item is niet op voorraad!</p>
+            {% elseif feedback == 'onvoldoend' %}
+            <p class="error">Onvoldoende saldo!</p>
+            {% elseif feedback == 'geenWisseling' %}
+            <p class="error">Helaas, momenteel is er geen wisselgeld beschikbaar. U ontvangt uw geld terug!</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block bottomLink %}
+surfen als <a href="{{ path('app_admin') }}">admin</a>
+<p>Disclaimer: Deze website is gemaakt als een opdracht voor de opleiding Full-Stack developer van VDAB</p>
+{% endblock %}

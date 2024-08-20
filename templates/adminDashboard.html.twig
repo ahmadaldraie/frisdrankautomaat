@@ -1,0 +1,31 @@
+{% extends 'bases/base.html.twig' %}
+{% block title %}Admin dashboard{% endblock %}
+
+{% block inhoud %}
+<section class="clearFix frisdrankenLijst">
+    <ul>
+        {% for frisdrank in frisdranken %}
+        <li>
+            <img src="{{asset('img/' ~ frisdrank.type ~ '.png')}}" alt="{{frisdrank.type}}">
+            <h2>{{frisdrank.type}}</h2>
+            <button onclick="window.location.href='{{path('app_frisdrankWijzigen',{id: frisdrank.id})}}';">Wijzigen</button>
+            <p><strong>Aantal</strong>: {{frisdrank.aantal}}</p>
+            <p><strong>prijs</strong>: {{frisdrank.prijs}}&euro;</p>
+            
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+<section class="clearFix" id="muntjes">
+    <h1>Muntjes</h1>
+    {% for muntje in muntjes %}
+    <div class="muntje">
+        <h2>{{muntje.waarde}}&euro;</h2>
+        <p><strong>aantal</strong>: {{muntje.aantal}}</p>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
+{% block bottomLink %}
+<a href="{{ path('app_logout')}}">Uitloggen</a>
+{% endblock %}

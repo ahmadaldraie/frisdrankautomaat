@@ -1,0 +1,18 @@
+{% block admin_username_row %}
+ <label for="admin_username">Username</label><br>
+ <input type="text" name="admin_username" placeholder="Username" id="admin_username" required> <br>
+{% endblock %}
+
+{% block admin_wachtwoord_row %}
+ <label for="admin_wachtwoord">Wachtwoord</label><br>
+ <input type="password" name="admin_wachtwoord" placeholder="Wachtwoord" id="admin_wachtwoord" required> <br>
+{% endblock %}
+
+{% block admin_herhaalWachtwoord_row %}
+ <label for="admin_herhaalWachtwoord">Herhaal Wachtwoord</label><br>
+ <input type="password" name="admin_herhaalWachtwoord" placeholder="Herhaal Wachtwoord" id="admin_herhaalWachtwoord" required> <br>
+{% endblock %}
+
+{% block submit_row %}
+ <input type="submit" value="aanmelden">
+{% endblock %}
